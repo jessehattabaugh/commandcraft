@@ -1,0 +1,222 @@
+<html>
+<head>
+  <title>CommandCraft</title>
+  <style type="text/css">
+    section:not(:last-child) {
+      border-bottom: 1px solid grey;
+      margin-bottom: 1em;
+    }
+
+    [type=number]{
+      width: 3em;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="app">
+  
+    <section>
+      <label>Command
+        <select data-bind="
+          options: dataValues.commands,
+          value: selected.command
+          "></select>
+      </label>
+    </section>
+    
+    <section data-bind="visible: selected.command() == 'give'">
+      
+      <section>
+        <label>Player
+          <input data-bind="value: selected.player">
+          <select data-bind="
+            options: dataValues.variables,
+            optionsText: function (item) {
+               switch (item){
+                 case '@a':
+                   return 'All';
+                   break;
+                 case '@p':
+                   return 'Nearest';
+                   break;
+                 case '@r':
+                   return 'Random';
+                   break;
+               }
+            },
+            value: selected.player
+            "></select>
+        </label>
+      </section>
+      
+      <section>
+        <label>Item
+          <select data-bind="
+            options: dataValues.items,
+            optionsText: 'name',
+            value: selected.item
+          "></select>
+        </label>
+      </section>
+      
+      <section>
+        <label>Amount
+          <input type="number" min="1" max="64" data-bind="value: selected.amount">
+        </label>
+      </section>
+      
+      <section>
+        <label>Metadata
+          <input type="number" min="0" max="256" data-bind="value: selected.metadata">
+        </label>
+      </section>
+      
+    </section>
+    
+    <section data-bind="visible: selected.command() == 'summon'">
+      
+      <section>
+        <label>Entity
+          <select data-bind="
+            options: dataValues.entities,
+            optionsText: 'name',
+            value: selected.entity
+          "></select>
+        </label>
+      </section>
+      
+      <section>
+        <fieldset>
+          <legend>Coordinates</legend>
+          
+          <div>
+            <label>X
+              <input type="number" data-bind="value: selected.x">
+            </label>
+            <label>
+              <input type="checkbox" data-bind="value: selected.xRelative"> relative
+            </label>
+          </div>
+          
+          <div>
+            <label>Y
+              <input type="number" min="0" max="256" data-bind="value: selected.y">
+            </label>
+            <label>
+              <input type="checkbox" data-bind="value: selected.yRelative"> relative
+            </label>
+          </div>
+          
+          <div>
+            <label>Z
+              <input type="number" data-bind="value: selected.z">
+            </label>
+            <label>
+              <input type="checkbox" data-bind="value: selected.zRelative"> relative
+            </label>
+          </div>
+          
+        </fieldset>
+        
+        <section>
+        
+      </section>
+      
+    </section>
+    
+    <section>
+      <label>Output
+        <textarea style="width: 100%; height: 10em" data-bind="text: output"></textarea>
+      </label>
+    </section>
+    
+  </form>
+
+  <script type="text/html" id="tagNode">
+    <section>
+      
+    </section>
+  </script>
+
+  <script type="text/javascript" src="/bower_components/jquery/jquery.js"></script>
+  <script type="text/javascript" src="/bower_components/knockout/build/knockout-raw.js"></script>
+  <script type="text/javascript">
+
+    function App() {
+      var self = this;
+      
+      self.dataValues = {
+        commands: [
+          'give',
+          'summon'
+        ],
+        variables: [
+          '@a',
+          '@p',
+          '@r'
+        ],
+        entities: [
+          { id: 1, name: 'Item' },
+          { id: 2, name: 'XPOrb' }
+        ],
+        items: [
+          { id: 256, name: 'Iron Shovel'},
+          { id: 257, name: 'Iron Pickaxe'}
+        ],
+        tags: [
+          { id: 'id' },
+          { id: 'Health' }
+        ]
+      };
+      
+      // the command we are currently building
+      self.selected = {
+        command: ko.observable(''),
+        player: ko.observable(''),
+        entity: ko.observable(''),
+        item: ko.observable(0),
+        amount: ko.observable(1),
+        metadata: ko.observable(0),
+        x: ko.observable('0'),
+        xRelative: ko.observable(false),
+        y: ko.observable('0'),
+        yRelative: ko.observable(false),
+        z: ko.observable('0'),
+        zRelative: ko.observable(false)
+      }
+      
+      self.output = ko.computed(function compile(){
+        var args = [self.selected.command()];
+        
+        switch (args[0]) {
+            
+          case 'give':
+            args = args.concat([
+              self.selected.player(),
+              self.selected.item().id,
+              self.selected.amount(),
+              self.selected.metadata()
+            ]);
+            break;
+            
+          case 'summon':
+            args = args.concat([
+              self.selected.entity().name,
+              (self.selected.xRelative() ? '~' : '') + self.selected.x(),
+              (self.selected.yRelative() ? '~' : '') + self.selected.y(),
+              (self.selected.zRelative() ? '~' : '') + self.selected.z()
+            ]);
+            break;
+        }
+        
+        return "/" + args.join(" ");
+      });
+     
+    }
+
+    ko.applyBindings(new App(), $('app')[0]);
+
+  </script>
+</body>
+</html>

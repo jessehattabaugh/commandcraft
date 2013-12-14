@@ -1,0 +1,29 @@
+{
+  "name": "commandcraft",
+  "version": "0.0.0",
+  "description": "Web based gui for constructing Minecraft commands",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jessehattabaugh/commandcraft.git"
+  },
+  "keywords": [
+    "minecraft"
+  ],
+  "author": "Jesse Hattabaugh",
+  "license": "Artistic License 2.0",
+  "bugs": {
+    "url": "https://github.com/jessehattabaugh/commandcraft/issues"
+  },
+  "devDependencies": {
+    "bower": "~1.2.8",
+    "heroku": "~0.1.2"
+  },
+  "dependencies": {
+    "express": "~3.4.7",
+    "logfmt": "~0.17.0",
+    "gzippo": "~0.2.0"
+  }
+}
