@@ -18,12 +18,12 @@
     "url": "https://github.com/jessehattabaugh/commandcraft/issues"
   },
   "devDependencies": {
-    "bower": "~1.2.8",
     "heroku": "~0.1.2"
   },
   "dependencies": {
     "express": "~3.4.7",
     "logfmt": "~0.17.0",
-    "gzippo": "~0.2.0"
+    "gzippo": "~0.2.0",
+    "node-restful": "~0.1.14"
   }
 }

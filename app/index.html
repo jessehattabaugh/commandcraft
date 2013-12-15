@@ -1,13 +1,14 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>CommandCraft</title>
   <style type="text/css">
     section:not(:last-child) {
-      border-bottom: 1px solid grey;
+      border-bottom: 1px solid gray;
       margin-bottom: 1em;
     }
 
-    [type=number]{
+    input[type=number]{
       width: 3em;
     }
   </style>
@@ -19,32 +20,21 @@
     <section>
       <label>Command
         <select data-bind="
-          options: dataValues.commands,
+          options: commands,
+          optionsText: 'id',
           value: selected.command
-          "></select>
+        "></select>
       </label>
     </section>
     
-    <section data-bind="visible: selected.command() == 'give'">
+    <section data-bind="visible: selected.command().id == 'give'">
       
       <section>
         <label>Player
           <input data-bind="value: selected.player">
           <select data-bind="
-            options: dataValues.variables,
-            optionsText: function (item) {
-               switch (item){
-                 case '@a':
-                   return 'All';
-                   break;
-                 case '@p':
-                   return 'Nearest';
-                   break;
-                 case '@r':
-                   return 'Random';
-                   break;
-               }
-            },
+            options: variables,
+            optionsText: 'name',
             value: selected.player
             "></select>
         </label>
@@ -53,7 +43,7 @@
       <section>
         <label>Item
           <select data-bind="
-            options: dataValues.items,
+            options: items,
             optionsText: 'name',
             value: selected.item
           "></select>
@@ -74,12 +64,12 @@
       
     </section>
     
-    <section data-bind="visible: selected.command() == 'summon'">
+    <section data-bind="visible: selected.command().id == 'summon'">
       
       <section>
         <label>Entity
           <select data-bind="
-            options: dataValues.entities,
+            options: entities,
             optionsText: 'name',
             value: selected.entity
           "></select>
@@ -121,6 +111,8 @@
         
         <section>
         
+        </section>
+        
       </section>
       
     </section>
@@ -135,40 +127,44 @@
 
   <script type="text/html" id="tagNode">
     <section>
-      
+      I'm a tag
     </section>
   </script>
 
-  <script type="text/javascript" src="/bower_components/jquery/jquery.js"></script>
-  <script type="text/javascript" src="/bower_components/knockout/build/knockout-raw.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
   <script type="text/javascript">
 
     function App() {
       var self = this;
       
       self.dataValues = {
-        commands: [
-          'give',
-          'summon'
-        ],
-        variables: [
-          '@a',
-          '@p',
-          '@r'
-        ],
-        entities: [
-          { id: 1, name: 'Item' },
-          { id: 2, name: 'XPOrb' }
-        ],
-        items: [
-          { id: 256, name: 'Iron Shovel'},
-          { id: 257, name: 'Iron Pickaxe'}
-        ],
-        tags: [
-          { id: 'id' },
-          { id: 'Health' }
-        ]
       };
+      
+      self.commands = ko.observable({id: "Loading..."});
+      $.get('commands', {}, function success(res) {
+        self.commands(res);
+      });
+      
+      self.variables = ko.observable();
+      $.get('variables', {}, function success(res) {
+        self.variables(res);
+      });
+      
+      self.entities = ko.observable();
+      $.get('entities', {}, function success(res) {
+        self.entities(res);
+      });
+      
+      self.items = ko.observable({id: "Loading..."});
+      $.get('items', {}, function success(res) {
+        self.items(res);
+      });
+      
+      self.tags = ko.observable();
+      $.get('tags', {}, function success(res) {
+        self.tags(res);
+      });
       
       // the command we are currently building
       self.selected = {
@@ -184,10 +180,10 @@
         yRelative: ko.observable(false),
         z: ko.observable('0'),
         zRelative: ko.observable(false)
-      }
+      };
       
       self.output = ko.computed(function compile(){
-        var args = [self.selected.command()];
+        var args = [self.selected.command().id];
         
         switch (args[0]) {
             
@@ -214,8 +210,8 @@
       });
      
     }
-
-    ko.applyBindings(new App(), $('app')[0]);
+    var app = new App();
+    ko.applyBindings(app, $('app')[0]);
 
   </script>
 </body>
