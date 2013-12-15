@@ -35,13 +35,15 @@ app.entities = restful.model('entities', mongoose.Schema({
   
 app.items = restful.model('items', mongoose.Schema({
   id: 'number',
-  name: 'string'
+  name: 'string',
+  disabled: 'boolean'
 }))
   .methods(['get'])
   .register(app, '/items');
   
 app.tags = restful.model('tags', mongoose.Schema({
-  id: 'string'
+  id: 'string',
+  description: 'string'
 }))
   .methods(['get'])
   .register(app, '/tags');
