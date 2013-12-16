@@ -43,7 +43,8 @@ app.items = restful.model('items', mongoose.Schema({
   
 app.tags = restful.model('tags', mongoose.Schema({
   id: 'string',
-  description: 'string'
+  description: 'string',
+  parent: 'array'
 }))
   .methods(['get'])
   .register(app, '/tags');
