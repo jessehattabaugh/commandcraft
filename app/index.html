@@ -152,6 +152,14 @@
         <input data-bind="value: value">
       <!-- /ko -->
       
+      <!-- ko if: data.type === 'value' -->
+        <select data-bind="
+          options: values,
+          optionsText: 'label',
+          value: value
+        "></select>
+      <!-- /ko -->
+      
       <!-- ko if: data.type === 'number' -->
         <input type="number" data-bind="value: value">
       <!-- /ko -->
@@ -204,10 +212,10 @@
       this.variables = ko.observable();
       this.entities = ko.observable();
       this.items = ko.observable({id: "Loading..."});
-      $.get('commands', {}, function success(res) { that.commands(res); });
-      $.get('variables', {}, function success(res) { that.variables(res); });
-      $.get('entities', {}, function success(res) { that.entities(res); });
-      $.get('items?disabled__ne=true', {}, function success(res) { that.items(res); });
+      $.get('commands?sort=id', {}, function success(res) { that.commands(res); });
+      $.get('variables?sort=id', {}, function success(res) { that.variables(res); });
+      $.get('values?kind__in=entity&sort=id', {}, function success(res) { that.entities(res); });
+      $.get('values?kind__in=block,item&sort=id', {}, function success(res) { that.items(res); });
       
       // user input observables
       this.command = ko.observable('');
@@ -276,13 +284,22 @@
         that.options(res);
       });
       this.selected = ko.observable();
+      
+      this.values = ko.observable();
+      if (this.data.type === 'value') {
+        $.get('values?kind__in=' + this.data.kind, {}, function success(res) { 
+          that.values(res);
+          //console.log(res);
+        });
+      }
+      
       this.value = ko.observable(this.data.type === 'string' ? '' : (this.data.type === 'boolean' ? false : 0)); // not used by lists or compounds
       this.children = ko.observableArray([]); // not used by strings, numbers, or bools
       
       this.canAdd = function () {
         //console.log(this.data.type);
         if (this.data.type === 'list') {
-          console.log(this.children().length);
+          //console.log(this.children().length);
           return this.data.limit ? this.children().length < this.data.limit : true;
         } 
         else if (this.data.type === 'compound') {
@@ -299,7 +316,7 @@
         this.children.push(tag);
         
         // remove the tag from the list of options
-        if (this.data.type !== 'list') {
+        if (this.data.type !== 'list') { // lists can have multiples
           this.options.remove(function (item) {
             return item.id == tag.data.id;
           });
@@ -334,7 +351,10 @@
           return '"' + that.value() + '"';
         } 
         else if (that.data.type === 'boolean') {
-          return that.value()? 1 : 0;
+          return that.value() ? 1 : 0;
+        }
+        else if (that.data.type === 'value') {
+          return that.value() ? that.value().id : '';
         }
         else {
           return that.value();

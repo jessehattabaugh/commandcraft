@@ -25,6 +25,6 @@
     "express": "~3.4.7",
     "logfmt": "~0.17.0",
     "gzippo": "~0.2.0",
-    "node-restful": "~0.1.14"
+    "node-restful": "https://codeload.github.com/baugarten/node-restful/legacy.tar.gz/master"
   }
 }
