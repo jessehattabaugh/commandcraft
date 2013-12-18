@@ -14,7 +14,7 @@
 </head>
 <body>
     
-  <!-- Command picker ------------------------------------------------------->
+  <!-- Command picker --------------------------------------------------------->
   <section>
     <label>Command
       <select data-bind="
@@ -25,7 +25,7 @@
     </label>
   </section>
   
-  <!-- Entity Picker -------------------------------------------------------->
+  <!-- Entity Picker ---------------------------------------------------------->
   <!-- ko if: command().id === 'summon' -->
     <section>
       <label>Entity
@@ -38,7 +38,7 @@
     </section>
   <!-- /ko -->
   
-  <!-- Coordinate Picker ---------------------------------------------------->
+  <!-- Coordinate Picker ------------------------------------------------------>
   <!-- ko if: command().id === 'summon' -->
     <section>
       <fieldset>
@@ -75,7 +75,7 @@
     </section>
   <!-- /ko -->
   
-  <!-- Player picker -------------------------------------------------------->
+  <!-- Player picker ---------------------------------------------------------->
   <!-- ko if: command().id === 'give' -->
     <section>
       <label>Player
@@ -99,7 +99,7 @@
     </section>
   <!-- /ko -->
   
-  <!-- Item Picker ---------------------------------------------------------->
+  <!-- Item Picker ------------------------------------------------------------>
   <!-- ko if: command().id === 'give' -->
     <section>
       <label>Item
@@ -112,7 +112,7 @@
     </section>
   <!-- /ko -->
   
-  <!-- Amount input --------------------------------------------------------->
+  <!-- Amount input ----------------------------------------------------------->
   <!-- ko if: command().id === 'give' -->
     <section>
       <label>Amount
@@ -121,7 +121,7 @@
     </section>
   <!-- /ko -->
   
-  <!-- Metadata input ------------------------------------------------------->
+  <!-- Metadata input --------------------------------------------------------->
   <!-- ko if: command().id === 'give' -->
     <section>
       <label>Metadata
@@ -130,13 +130,13 @@
     </section>
   <!-- /ko -->
   
-  <!-- Tag builder ---------------------------------------------------------->
+  <!-- Tag builder ------------------------------------------------------------>
   <section>
     <label>Tag</label>
     <ul data-bind="template: {name: 'tagTemplate', data: tag}"></ul>
   </section>
   
-    <!-- Tag Template ----------------------------------------------------------->
+  <!-- Tag Template ----------------------------------------------------------->
   <script type="text/html" id="tagTemplate">
     <li data-bind="attr:{title: data.description}">
     
@@ -175,7 +175,7 @@
     </li>
   </script>
   
-  <!-- Output --------------------------------------------------------------->
+  <!-- Output ----------------------------------------------------------------->
   <section>
     <label>Output
       <textarea style="width: 100%; height: 10em" data-bind="text: output"></textarea>
@@ -191,26 +191,32 @@
     
     /* View Model *************************************************************/
     function App() {
-      var self = this;
+      var that = this;
       
       // ajax observables
       this.commands = ko.observable({id: "Loading..."});
       this.variables = ko.observable();
       this.entities = ko.observable();
       this.items = ko.observable({id: "Loading..."});
-      $.get('commands', {}, function success(res) { self.commands(res); });
-      $.get('variables', {}, function success(res) { self.variables(res); });
-      $.get('entities', {}, function success(res) { self.entities(res); });
-      $.get('items?disabled__ne=true', {}, function success(res) { self.items(res); });
+      $.get('commands', {}, function success(res) { that.commands(res); });
+      $.get('variables', {}, function success(res) { that.variables(res); });
+      $.get('entities', {}, function success(res) { that.entities(res); });
+      $.get('items?disabled__ne=true', {}, function success(res) { that.items(res); });
       
       // user input observables
       this.command = ko.observable('');
       this.item = ko.observable({});
-      this.tag = new Tag();
+      this.tag = ko.computed(function () {
+        if (that.command().id === 'give') {
+          return new Tag({id:'Item', type:'compound'});
+        } else {
+          return new Tag({id:'Entity', type:'compound'});
+        }
+      });
       this.playerVar = ko.observable();
       this.playerName = ko.observable();
       this.player = ko.computed(function() {
-        return self.playerVar() ? self.playerVar().id : self.playerName();
+        return that.playerVar() ? that.playerVar().id : that.playerName();
       });
       this.amount = ko.observable(0);
       this.metadata = ko.observable(0);
@@ -224,27 +230,27 @@
       
       /* output the compiled command ******************************************/
       this.output = ko.computed(function compile() {
-        var args = [self.command().id];
+        var args = [that.command().id];
         
         switch (args[0]) {
             
           case 'give':
             args = args.concat([
-              self.player(),
-              self.item().id,
-              self.amount(),
-              self.metadata(),
-              self.tag.toString()
+              that.player(),
+              that.item().id,
+              that.amount(),
+              that.metadata(),
+              that.tag().toString()
             ]);
             break;
             
           case 'summon':
             args = args.concat([
-              self.entity().name,
-              (self.x.rel() ? '~' : '') + self.x(),
-              (self.y.rel() ? '~' : '') + self.y(),
-              (self.z.rel() ? '~' : '') + self.z(),
-              self.tag.toString()
+              that.entity().name,
+              (that.x.rel() ? '~' : '') + that.x(),
+              (that.y.rel() ? '~' : '') + that.y(),
+              (that.z.rel() ? '~' : '') + that.z(),
+              that.tag().toString()
             ]);
             break;
         }
@@ -257,7 +263,7 @@
       //console.log("creating new tag");
       var that = this;
       
-      this.data = data? data: {id: false, type: 'compound'}; // first item is always an unidentified compound
+      this.data = data? data: {id: 'root', type: 'compound'}; // defaults
       this.options = ko.observableArray();
       $.get('tags' + (this.data.id ? '?parent=' + this.data.id : ''), {}, function success(res) { 
         that.options(res);
