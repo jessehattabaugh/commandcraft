@@ -161,12 +161,16 @@
         <ul data-bind="template: {name: 'tagTemplate', foreach: children}"></ul>
         
         <select data-bind="
-          options: $data.options,
+          options: options,
           optionsText: 'id',
-          value: $data.selected
+          value: selected,
+          visible: canAdd()
         "></select>
         
-        <input type="button" value="add" data-bind="click: addChild">
+        <input type="button" value="add" data-bind="
+          click: addChild,
+          visible: canAdd()
+        ">
       <!-- /ko -->
     </li>
   </script>
@@ -244,7 +248,6 @@
             ]);
             break;
         }
-        
         return "/" + args.join(" ");
       });
     }
@@ -255,7 +258,7 @@
       var that = this;
       
       this.data = data? data: {id: false, type: 'compound'}; // first item is always an unidentified compound
-      this.options = ko.observable();
+      this.options = ko.observableArray();
       $.get('tags' + (this.data.id ? '?parent=' + this.data.id : ''), {}, function success(res) { 
         that.options(res);
       });
@@ -263,10 +266,32 @@
       this.value = ko.observable(this.data.type === 'string' ? '' : (this.data.type === 'boolean' ? false : 0)); // not used by lists or compounds
       this.children = ko.observableArray([]); // not used by strings, numbers, or bools
       
+      this.canAdd = function () {
+        console.log(this.data.type);
+        if (this.data.type === 'list') {
+          console.log(this.children().length);
+          return this.data.limit ? this.children().length < this.data.limit : true;
+        } 
+        else if (this.data.type === 'compound') {
+          return this.options().length > 0;
+        } 
+        else {
+          return false;
+        }
+      };
+      
       this.addChild = function (data) {
         //console.log("adding a child");
         var tag = new Tag(data.selected());
         this.children.push(tag);
+        
+        // remove the tag from the list of options
+        if (this.data.type !== 'list') {
+          this.options.remove(function (item) {
+            return item.id == tag.data.id;
+          });
+        }
+        
       };
       
       this.toString = ko.computed(function () {
