@@ -139,7 +139,11 @@
   <!-- Tag Template ----------------------------------------------------------->
   <script type="text/html" id="tagTemplate">
     <li data-bind="attr:{title: data.description}">
-    
+      
+      <!-- ko if: parent !== null -->
+        <input type="button" value="x" data-bind="click: removeSelf">
+      <!-- /ko -->
+      
       <!-- ko if: data.id -->
         <label data-bind="text: data.id"></label>
       <!-- /ko -->
@@ -172,6 +176,8 @@
           visible: canAdd()
         ">
       <!-- /ko -->
+      
+      
     </li>
   </script>
   
@@ -259,11 +265,12 @@
     }
     
     /* Tag class **************************************************************/
-    function Tag(data) {
+    function Tag(data, parent) {
       //console.log("creating new tag");
       var that = this;
       
       this.data = data? data: {id: 'root', type: 'compound'}; // defaults
+      this.parent = parent ? parent : null;
       this.options = ko.observableArray();
       $.get('tags' + (this.data.id ? '?parent=' + this.data.id : ''), {}, function success(res) { 
         that.options(res);
@@ -273,7 +280,7 @@
       this.children = ko.observableArray([]); // not used by strings, numbers, or bools
       
       this.canAdd = function () {
-        console.log(this.data.type);
+        //console.log(this.data.type);
         if (this.data.type === 'list') {
           console.log(this.children().length);
           return this.data.limit ? this.children().length < this.data.limit : true;
@@ -288,7 +295,7 @@
       
       this.addChild = function (data) {
         //console.log("adding a child");
-        var tag = new Tag(data.selected());
+        var tag = new Tag(data.selected(), this);
         this.children.push(tag);
         
         // remove the tag from the list of options
@@ -298,6 +305,11 @@
           });
         }
         
+      };
+      
+      this.removeSelf = function (data) {
+        // removes this tag from it's parent and adds it's option back to the parents menu
+        this.parent.options.push(this.parent.children.remove(data)[0].data);
       };
       
       this.toString = ko.computed(function () {
