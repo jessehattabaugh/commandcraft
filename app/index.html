@@ -157,7 +157,7 @@
         <label>false <input type="radio" value="false" data-bind="trueOrFalse: value"></label>
       <!-- /ko -->
       
-      <!-- ko if: (data.type === 'list' || data.type === 'compound' -->
+      <!-- ko if: data.type === 'list' || data.type === 'compound' -->
         <ul data-bind="template: {name: 'tagTemplate', foreach: children}"></ul>
         
         <select data-bind="
