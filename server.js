@@ -26,20 +26,21 @@ app.variables = restful.model('variables', mongoose.Schema({
   .methods(['get'])
   .register(app, '/variables');
   
-app.entities = restful.model('entities', mongoose.Schema({
+/*app.entities = restful.model('entities', mongoose.Schema({
   id: 'number',
   name: 'string'
 }))
   .methods(['get'])
-  .register(app, '/entities');
+  .register(app, '/entities');*/
   
-app.items = restful.model('items', mongoose.Schema({
+app.values = restful.model('values', mongoose.Schema({
   id: 'number',
   name: 'string',
-  disabled: 'boolean'
+  kind: 'string',
+  label: 'string'
 }))
   .methods(['get'])
-  .register(app, '/items');
+  .register(app, '/values');
   
 app.tags = restful.model('tags', mongoose.Schema({
   id: 'string',
