@@ -26,13 +26,6 @@ app.variables = restful.model('variables', mongoose.Schema({
   .methods(['get'])
   .register(app, '/variables');
   
-/*app.entities = restful.model('entities', mongoose.Schema({
-  id: 'number',
-  name: 'string'
-}))
-  .methods(['get'])
-  .register(app, '/entities');*/
-  
 app.values = restful.model('values', mongoose.Schema({
   id: 'number',
   name: 'string',

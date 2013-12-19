@@ -222,7 +222,7 @@
       this.item = ko.observable({});
       this.tag = ko.computed(function () {
         if (that.command().id === 'give') {
-          return new Tag({id:'Item', type:'compound'});
+          return new Tag({id:'tag', type:'compound'});
         } else {
           return new Tag({id:'Entity', type:'compound'});
         }
