@@ -355,7 +355,7 @@
         }
         else if (that.data.type === 'value') { // a value loaded from a DB collection
           var val = that.value();
-          console.log(that.data.property);
+          //console.log(that.data.property);
           return val ? (that.data.property ? val[that.data.property]  : val.id) : '';
         }
         else {

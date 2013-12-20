@@ -41,7 +41,7 @@ app.tags = restful.model('tags', mongoose.Schema({
   description: 'string',
   parent: 'array',  // id of tags that this tag can be a child of
   kind: 'string',   // category of values to offer as options
-  valueProperty: 'string' // property of the value item to use in commands, defaults to "id"
+  property: 'string' // property of the value item to use in commands, defaults to "id"
 }))
   .methods(['get'])
   .register(app, '/tags');
