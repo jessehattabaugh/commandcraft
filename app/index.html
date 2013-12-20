@@ -353,8 +353,10 @@
         else if (that.data.type === 'boolean') {
           return that.value() ? 1 : 0;
         }
-        else if (that.data.type === 'value') {
-          return that.value() ? that.value().id : '';
+        else if (that.data.type === 'value') { // a value loaded from a DB collection
+          var val = that.value();
+          //console.log(that.data.property);
+          return val ? (that.data.property ? val[that.data.property]  : val.id) : '';
         }
         else {
           return that.value();
