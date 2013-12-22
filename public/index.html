@@ -155,7 +155,9 @@
       <!-- ko if: data.type === 'value' -->
         <select data-bind="
           options: values,
-          optionsText: 'label',
+          optionsText: function (option) {
+            return option.label ? option.label : option.name;
+          },
           value: value
         "></select>
       <!-- /ko -->
