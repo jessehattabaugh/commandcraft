@@ -27,7 +27,7 @@ function View() {
   this.player = ko.computed(function() {
     return that.playerVar() ? that.playerVar().id : that.playerName();
   });
-  this.amount = ko.observable(0);
+  this.amount = ko.observable(1);
   this.metadata = ko.observable(0);
   this.entity = ko.observable('');
   this.x = ko.observable('0');
