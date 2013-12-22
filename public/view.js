@@ -9,8 +9,8 @@ function View() {
   this.items = ko.observable({id: "Loading..."});
   $.get('commands?sort=id', {}, function success(res) { that.commands(res); });
   $.get('variables?sort=id', {}, function success(res) { that.variables(res); });
-  $.get('values?kind__in=entity&sort=id', {}, function success(res) { that.entities(res); });
-  $.get('values?kind__in=block,item&sort=id', {}, function success(res) { that.items(res); });
+  $.get('values?kind__in=entity', {}, function success(res) { that.entities(res); });
+  $.get('values?kind__in=block,item', {}, function success(res) { that.items(res); });
   
   // user input observables
   this.command = ko.observable('');
