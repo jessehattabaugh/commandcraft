@@ -142,9 +142,8 @@
       <!-- Amount input ----------------------------------------------------------->
       <!-- ko if: command().id === 'give' -->
         <section class="form-group">
-          <label>Amount
-            <input type="number" min="1" max="64" data-bind="value: amount">
-          </label>
+          <label for="">Amount</label>
+          <input id="amountInput" class="form-control" type="number" min="1" max="64" data-bind="value: amount">
         </section>
       <!-- /ko -->
       
