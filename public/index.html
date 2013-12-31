@@ -129,20 +129,19 @@
       
       <!-- Item Picker ------------------------------------------------------------>
       <!-- ko if: command().id === 'give' -->
-        <section>
-          <label>Item
-            <select data-bind="
-              options: items,
-              optionsText: 'name',
-              value: item
-            "></select>
-          </label>
+        <section class="form-group">
+          <label for="itemSelect">Item</label>
+          <select id="itemSelect" class="form-control" data-bind="
+            options: items,
+            optionsText: 'name',
+            value: item
+          "></select>
         </section>
       <!-- /ko -->
       
       <!-- Amount input ----------------------------------------------------------->
       <!-- ko if: command().id === 'give' -->
-        <section>
+        <section class="form-group">
           <label>Amount
             <input type="number" min="1" max="64" data-bind="value: amount">
           </label>
