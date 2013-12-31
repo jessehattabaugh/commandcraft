@@ -7,7 +7,10 @@ function View() {
   this.variables = ko.observable();
   this.entities = ko.observable();
   this.items = ko.observable({id: "Loading..."});
-  $.get('commands?sort=id', {}, function success(res) { that.commands(res); });
+  $.get('commands?sort=id', {}, function success(res) { 
+    that.commands(res);
+    that.command(res[0]);
+  });
   $.get('variables?sort=id', {}, function success(res) { that.variables(res); });
   $.get('values?kind__in=entity', {}, function success(res) { that.entities(res); });
   $.get('values?kind__in=block,item', {}, function success(res) { that.items(res); });
