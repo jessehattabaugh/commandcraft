@@ -22,6 +22,10 @@
       vertical-align: top;
       padding-top: 5px;
     }
+    .list-group-item .form-control {
+      display: inline-block;
+      width: auto;
+    }
   </style>
 </head>
 <body>
@@ -126,7 +130,7 @@
               <ul class="dropdown-menu" data-bind="foreach: variables">
                 <li><a href="#" data-bind="
                   text: name,
-                  click: $parent.selectPlayerVariablegit
+                  click: $parent.selectPlayerVariable
                 "></a></li>
               </ul>
             </div><!-- /btn-group -->
@@ -197,11 +201,11 @@
             <!-- /ko -->
             
             <!-- ko if: data.type === 'string' -->
-              <input data-bind="value: value">
+              <input class="form-control" data-bind="value: value">
             <!-- /ko -->
             
             <!-- ko if: data.type === 'value' -->
-              <select data-bind="
+              <select class="form-control" data-bind="
                 options: values,
                 optionsText: function (option) {
                   return option.label ? option.label : option.name;
@@ -211,12 +215,12 @@
             <!-- /ko -->
             
             <!-- ko if: data.type === 'number' -->
-              <input type="number" data-bind="value: value">
+              <input class="form-control" type="number" data-bind="value: value">
             <!-- /ko -->
             
             <!-- ko if: data.type === 'boolean' -->
-              <label>true <input type="radio" value="true" data-bind="trueOrFalse: value"></label>
-              <label>false <input type="radio" value="false" data-bind="trueOrFalse: value"></label>
+              <label>true <input class="form-control" type="radio" value="true" data-bind="trueOrFalse: value"></label>
+              <label>false <input class="form-control" type="radio" value="false" data-bind="trueOrFalse: value"></label>
             <!-- /ko -->
             
             <!-- ko if: data.type === 'list' || data.type === 'compound' -->
@@ -225,18 +229,16 @@
                 foreach: children
               }"></ul>
               
-              <button type="button" class="btn btn-default btn-xs">
-                <span class="glyphicon glyphicon-plus" data-bind="
-                  click: addChild,
-                  visible: canAdd()
-                "></span>
+              
+              <button type="button" class="btn btn-default btn-xs" data-bind="visible: canAdd">
+                <span class="glyphicon glyphicon-plus" data-bind="click: addChild"></span>
               </button>
               
-              <select data-bind="
+              <select class="form-control" data-bind="
                 options: options,
                 optionsText: 'id',
                 value: selected,
-                visible: canAdd()
+                visible: canAdd
               "></select>
             <!-- /ko -->
             

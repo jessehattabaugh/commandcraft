@@ -33,24 +33,26 @@ function Tag(data, parent) {
   this.children = ko.observableArray([]); // not used by strings, numbers, or bools
   
   /* determine if this tag can have children added to it ******************/
-  this.canAdd = function () {
-    //console.log(this.data.type);
-    if (this.data.type === 'list') {
-      //console.log(this.children().length);
-      return this.data.limit ? this.children().length < this.data.limit : true;
+  this.canAdd = ko.computed(function () {
+    
+    if (that.data.type === 'list') {
+      //console.log(that.data.id + ' has ' + (that.data.limit - that.children().length));
+      return that.data.limit ? that.children().length < that.data.limit : true;
     } 
-    else if (this.data.type === 'compound') {
-      return this.options().length > 0;
+    else if (that.data.type === 'compound') {
+      //console.log(that.data.id + ' has ' + that.options().length);
+      //console.log(that.options().length > 0);
+      return that.options().length > 0;
     } 
     else {
       return false;
     }
-  };
+  });
   
   /* adds a child to this node ********************************************/
   this.addChild = function (data) {
-    console.log("adding a child");
-    console.dir(data.selected());
+    //console.log("adding a child");
+    //console.dir(data.selected());
     var tag = new Tag(data.selected(), this);
     this.children.push(tag);
     
