@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css">
   <style type="text/css">
+    legend {
+      font-size: 14px;
+      font-weight: bold;
+      border-bottom: 0;
+      margin-bottom: 5px;
+    }
+    .list-group-item {
+      padding: 5px 10px;
+    }
+    .list-group:empty {
+      margin: 0;
+    }
+    .list-group-item > * {
+      display: inline-block;
+      vertical-align: top;
+      padding-top: 5px;
+    }
   </style>
 </head>
 <body>
@@ -168,7 +185,7 @@
         <li class="list-group-item" data-bind="attr: {title: data.description}">
         
           <!-- ko if: parent !== null -->
-            <button type="button" class="btn btn-default btn-xs pull-left" data-bind="click: removeSelf">
+            <button type="button" class="btn btn-default btn-xs" data-bind="click: removeSelf">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
           <!-- /ko -->
@@ -176,7 +193,7 @@
           <div>
           
             <!-- ko if: parent !== null && data.id -->
-              <h5 data-bind="text: data.id"></h5>
+              <label data-bind="text: data.id"></label>
             <!-- /ko -->
             
             <!-- ko if: data.type === 'string' -->
