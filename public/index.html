@@ -22,6 +22,9 @@
       vertical-align: top;
       padding-top: 5px;
     }
+    .list-group-item .btn {
+      margin-right: 5px;
+    }
     .list-group-item .form-control {
       display: inline-block;
       width: auto;
@@ -189,7 +192,7 @@
         <li class="list-group-item" data-bind="attr: {title: data.description}">
         
           <!-- ko if: parent !== null -->
-            <button type="button" class="btn btn-default btn-xs" data-bind="click: removeSelf">
+            <button type="button" class="btn btn-danger btn-xs" data-bind="click: removeSelf">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
           <!-- /ko -->
@@ -230,7 +233,7 @@
               }"></ul>
               
               
-              <button type="button" class="btn btn-default btn-xs" data-bind="visible: canAdd">
+              <button type="button" class="btn btn-success btn-xs" data-bind="visible: canAdd">
                 <span class="glyphicon glyphicon-plus" data-bind="click: addChild"></span>
               </button>
               
