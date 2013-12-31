@@ -22,11 +22,24 @@ function View() {
       return new Tag({id:'Entity', type:'compound'});
     }
   });
-  this.playerVar = ko.observable();
-  this.playerName = ko.observable();
-  this.player = ko.computed(function() {
-    return that.playerVar() ? that.playerVar().id : that.playerName();
-  });
+  
+  // the string that determines which player the command effects
+  this.player = ko.observable();
+  
+  // whether or not the player drop down is open
+  this.playerDropdown = ko.observable(false);
+  
+  // opens and closes the player variable dropdown
+  this.togglePlayerDropdown = function () {
+    this.playerDropdown(this.playerDropdown() ? false : true);
+  };
+  
+  // fired when the user selects from the dropdown menu
+  this.selectPlayerVariable = function (data) {
+    that.player(data.id);
+    that.playerDropdown(false);
+  };
+  
   this.amount = ko.observable(1);
   this.metadata = ko.observable(0);
   this.entity = ko.observable('');

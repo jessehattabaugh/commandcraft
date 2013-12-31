@@ -49,7 +49,8 @@ function Tag(data, parent) {
   
   /* adds a child to this node ********************************************/
   this.addChild = function (data) {
-    //console.log("adding a child");
+    console.log("adding a child");
+    console.dir(data.selected());
     var tag = new Tag(data.selected(), this);
     this.children.push(tag);
     

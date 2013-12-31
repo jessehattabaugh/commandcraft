@@ -1,202 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>CommandCraft</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css">
   <style type="text/css">
-    section:not(:last-child) {
-      border-bottom: 1px solid gray;
-      margin-bottom: 1em;
-    }
-    input[type=number]{
-      width: 3em;
-    }
   </style>
 </head>
 <body>
+  
+  <div class="container">
+  
+    <header>
+      <h3>CommandCraft</h3>
+    </header>
     
-  <!-- Command picker --------------------------------------------------------->
-  <section>
-    <label>Command
-      <select data-bind="
-        options: commands,
-        optionsText: 'id',
-        value: command
-      "></select>
-    </label>
-  </section>
-  
-  <!-- Entity Picker ---------------------------------------------------------->
-  <!-- ko if: command().id === 'summon' -->
-    <section>
-      <label>Entity
-        <select data-bind="
-          options: entities,
-          optionsText: 'name',
-          value: entity
-        "></select>
-      </label>
-    </section>
-  <!-- /ko -->
-  
-  <!-- Coordinate Picker ------------------------------------------------------>
-  <!-- ko if: command().id === 'summon' -->
-    <section>
-      <fieldset>
-        <legend>Coordinates</legend>
-        
-        <div>
-          <label>X
-            <input type="number" data-bind="value: x">
-          </label>
-          <label>
-            <input type="checkbox" data-bind="checked: x.rel"> relative
-          </label>
-        </div>
-        
-        <div>
-          <label>Y
-            <input type="number" min="0" max="256" data-bind="value: y">
-          </label>
-          <label>
-            <input type="checkbox" data-bind="checked: y.rel"> relative
-          </label>
-        </div>
-        
-        <div>
-          <label>Z
-            <input type="number" data-bind="value: z">
-          </label>
-          <label>
-            <input type="checkbox" data-bind="checked: z.rel"> relative
-          </label>
-        </div>
-        
-      </fieldset>
-    </section>
-  <!-- /ko -->
-  
-  <!-- Player picker ---------------------------------------------------------->
-  <!-- ko if: command().id === 'give' -->
-    <section>
-      <label>Player
-        <input data-bind="
-          value: playerName,
-          event: {keydown: function () {
-            playerVar('');
-            return true;
-          }}
-        ">
-        <select data-bind="
-          options: variables,
-          optionsText: 'name',
-          value: playerVar,
-          optionsCaption: '-',
-          event: {change: function () {
-            playerName('');
-          }}
+    <nav role="navigation">
+      <ul class="nav nav-tabs" data-bind="foreach: commands">
+        <li data-bind="css: { active: $parent.command().id == id }">
+          <a data-bind="
+            text: id,
+            click: function() { $parent.command($data) }
+          "></a>
+        </li>
+      </ul>
+    </nav>
+    
+    <form role="form" style="padding: 1em">
+    
+      <!-- Command picker ---------------------------------------------------------
+      <section>
+        <label>Command
+          <select data-bind="
+            options: commands,
+            optionsText: 'id',
+            value: command
           "></select>
-      </label>
-    </section>
-  <!-- /ko -->
-  
-  <!-- Item Picker ------------------------------------------------------------>
-  <!-- ko if: command().id === 'give' -->
-    <section>
-      <label>Item
-        <select data-bind="
-          options: items,
-          optionsText: 'name',
-          value: item
-        "></select>
-      </label>
-    </section>
-  <!-- /ko -->
-  
-  <!-- Amount input ----------------------------------------------------------->
-  <!-- ko if: command().id === 'give' -->
-    <section>
-      <label>Amount
-        <input type="number" min="1" max="64" data-bind="value: amount">
-      </label>
-    </section>
-  <!-- /ko -->
-  
-  <!-- Metadata input --------------------------------------------------------->
-  <!-- ko if: command().id === 'give' -->
-    <section>
-      <label>Metadata
-        <input type="number" min="0" max="256" data-bind="value: metadata">
-      </label>
-    </section>
-  <!-- /ko -->
-  
-  <!-- Tag builder ------------------------------------------------------------>
-  <section>
-    <label>Tag</label>
-    <ul data-bind="template: {name: 'tagTemplate', data: tag}"></ul>
-  </section>
-  
-  <!-- Tag Template ----------------------------------------------------------->
-  <script type="text/html" id="tagTemplate">
-    <li data-bind="attr:{title: data.description}">
+        </label>
+      </section>-->
       
-      <!-- ko if: parent !== null -->
-        <input type="button" value="x" data-bind="click: removeSelf">
+      <!-- Entity Picker ---------------------------------------------------------->
+      <!-- ko if: command().id === 'summon' -->
+        <section class="form-group">
+          <label class="control-label" for="entitySelect">Entity</label>
+          <select id="entitySelect" class="form-control" data-bind="
+            options: entities,
+            optionsText: 'name',
+            value: entity
+          "></select>
+          <p class="help-block">The thing you want to summon</p>
+        </section>
       <!-- /ko -->
       
-      <!-- ko if: data.id -->
-        <label data-bind="text: data.id"></label>
-      <!-- /ko -->
-      
-      <!-- ko if: data.type === 'string' -->
-        <input data-bind="value: value">
-      <!-- /ko -->
-      
-      <!-- ko if: data.type === 'value' -->
-        <select data-bind="
-          options: values,
-          optionsText: function (option) {
-            return option.label ? option.label : option.name;
-          },
-          value: value
-        "></select>
-      <!-- /ko -->
-      
-      <!-- ko if: data.type === 'number' -->
-        <input type="number" data-bind="value: value">
-      <!-- /ko -->
-      
-      <!-- ko if: data.type === 'boolean' -->
-        <label>true <input type="radio" value="true" data-bind="trueOrFalse: value"></label>
-        <label>false <input type="radio" value="false" data-bind="trueOrFalse: value"></label>
-      <!-- /ko -->
-      
-      <!-- ko if: data.type === 'list' || data.type === 'compound' -->
-        <ul data-bind="template: {name: 'tagTemplate', foreach: children}"></ul>
+      <!-- Coordinate Picker ------------------------------------------------------>
+      <!-- ko if: command().id === 'summon' -->
+        <fieldset class="row">
+          <legend>Coordinates</legend>
+          
+          <div class="col-sm-4">
+            
+            <div class="input-group">
+              <label for="xInput" class="input-group-addon">X</label>
+              <input id="xInput" type="number" min="0" max="256" class="form-control" data-bind="value: x">
+              <span class="input-group-addon">
+                <input type="checkbox" data-bind="checked: x.rel"> relative
+              </span>
+            </div>
+          </div>
+          
+          <div class="col-sm-4">
+            <div class="input-group">
+              <label for="yInput" class="input-group-addon">Y</label>
+              <input id="yInput" type="number" min="0" max="256" class="form-control" data-bind="value: y">
+              <span class="input-group-addon">
+                <input type="checkbox" data-bind="checked: y.rel"> relative
+              </span>
+            </div>
+          </div>
+          
+          <div class="col-sm-4">
+            <div class="input-group">
+              <label for="zInput" class="input-group-addon">Z</label>
+              <input id="zInput" type="number" min="0" max="256"class="form-control" data-bind="value: z">
+              <span class="input-group-addon">
+                <input type="checkbox" data-bind="checked: z.rel"> relative
+              </span>
+            </div>
+          </div>
+        </fieldset>
         
-        <select data-bind="
-          options: options,
-          optionsText: 'id',
-          value: selected,
-          visible: canAdd()
-        "></select>
-        
-        <input type="button" value="add" data-bind="
-          click: addChild,
-          visible: canAdd()
-        ">
       <!-- /ko -->
       
+      <!-- Player picker ---------------------------------------------------------->
+      <!-- ko if: command().id === 'give' -->
+        <section class="form-group">
+          <label for="playerInput">Player</label>
+          <div class="input-group">
+            
+            <input id="playerInput" class="form-control" data-bind="
+              value: player,
+              event: {keydown: function () {
+                // playerVar('');
+                return true;
+              }}
+            ">
+            <div class="input-group-btn" data-bind="css: {open: playerDropdown()}">
+              <button type="button" class="btn btn-default dropdown-toggle" data-bind="click: togglePlayerDropdown">Variables <span class="caret"></span></button>
+              <ul class="dropdown-menu" data-bind="foreach: variables">
+                <li><a href="#" data-bind="
+                  text: name,
+                  click: $parent.selectPlayerVariablegit
+                "></a></li>
+              </ul>
+            </div><!-- /btn-group -->
+          </div>
+            
+            <!--<select class="form-control" data-bind="
+              options: variables,
+              optionsText: 'name',
+              value: playerVar,
+              optionsCaption: '-',
+              event: {change: function () {
+                player('');
+              }}
+              "></select>-->
+        </section>
+      <!-- /ko -->
       
-    </li>
-  </script>
-  
-  <!-- Output ----------------------------------------------------------------->
-  <section>
-    <label>Output
-      <textarea style="width: 100%; height: 10em" data-bind="text: output"></textarea>
-    </label>
-  </section>
+      <!-- Item Picker ------------------------------------------------------------>
+      <!-- ko if: command().id === 'give' -->
+        <section>
+          <label>Item
+            <select data-bind="
+              options: items,
+              optionsText: 'name',
+              value: item
+            "></select>
+          </label>
+        </section>
+      <!-- /ko -->
+      
+      <!-- Amount input ----------------------------------------------------------->
+      <!-- ko if: command().id === 'give' -->
+        <section>
+          <label>Amount
+            <input type="number" min="1" max="64" data-bind="value: amount">
+          </label>
+        </section>
+      <!-- /ko -->
+      
+      <!-- Metadata input --------------------------------------------------------->
+      <!-- ko if: command().id === 'give' -->
+        <section class="form-group">
+          <label for="metadataInput" class="control-label">Metadata</label>
+          <input id="metadataInput" class="form-control" type="number" min="0" max="256" data-bind="value: metadata">
+        </section>
+      <!-- /ko -->
+      
+      <!-- Tag builder ------------------------------------------------------------>
+      <!-- ko if: command().id -->
+      <fieldset>
+        <legend>Tag</legend>
+        <ul class="list-group" data-bind="template: {name: 'tagTemplate', data: tag}"></ul>
+      </fieldset>
+      <!-- /ko -->
+      
+      <!-- Tag Template ----------------------------------------------------------->
+      <script type="text/html" id="tagTemplate">
+        <li class="list-group-item" data-bind="attr: {title: data.description}">
+        
+          <!-- ko if: parent !== null -->
+            <button type="button" class="btn btn-default btn-xs pull-left" data-bind="click: removeSelf">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          <!-- /ko -->
+          
+          <div>
+          
+            <!-- ko if: parent !== null && data.id -->
+              <h5 data-bind="text: data.id"></h5>
+            <!-- /ko -->
+            
+            <!-- ko if: data.type === 'string' -->
+              <input data-bind="value: value">
+            <!-- /ko -->
+            
+            <!-- ko if: data.type === 'value' -->
+              <select data-bind="
+                options: values,
+                optionsText: function (option) {
+                  return option.label ? option.label : option.name;
+                },
+                value: value
+              "></select>
+            <!-- /ko -->
+            
+            <!-- ko if: data.type === 'number' -->
+              <input type="number" data-bind="value: value">
+            <!-- /ko -->
+            
+            <!-- ko if: data.type === 'boolean' -->
+              <label>true <input type="radio" value="true" data-bind="trueOrFalse: value"></label>
+              <label>false <input type="radio" value="false" data-bind="trueOrFalse: value"></label>
+            <!-- /ko -->
+            
+            <!-- ko if: data.type === 'list' || data.type === 'compound' -->
+              <ul class="list-group" data-bind="template: {
+                name: 'tagTemplate', 
+                foreach: children
+              }"></ul>
+              
+              <button type="button" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-plus" data-bind="
+                  click: addChild,
+                  visible: canAdd()
+                "></span>
+              </button>
+              
+              <select data-bind="
+                options: options,
+                optionsText: 'id',
+                value: selected,
+                visible: canAdd()
+              "></select>
+            <!-- /ko -->
+            
+          </div>
+        </li>
+      </script>
+      
+      <!-- Output ----------------------------------------------------------------->
+      <div class="form-group">
+        <label for="outputTextarea">Output</label>
+        <textarea id="outputTextarea" class="form-control" data-bind="text: output"></textarea>
+      </div>
+    
+    </form>
+    
+  </div><!--/.container-->
   
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
