@@ -53,16 +53,17 @@ function Tag(data, parent) {
   this.addChild = function (data) {
     //console.log("adding a child");
     //console.dir(data.selected());
-    var tag = new Tag(data.selected(), this);
-    this.children.push(tag);
-    
-    // remove the tag from the list of options
-    if (this.data.type !== 'list') { // lists can have multiples
-      this.options.remove(function (item) {
-        return item.id == tag.data.id;
-      });
+    if (data.selected()) {
+      var tag = new Tag(data.selected(), this);
+      this.children.push(tag);
+      
+      // remove the tag from the list of options
+      if (this.data.type !== 'list') { // lists can have multiples
+        this.options.remove(function (item) {
+          return item.id == tag.data.id;
+        });
+      }
     }
-    
   };
   
   /* removes this tag from it's parent and adds it's option back to the parents menu */

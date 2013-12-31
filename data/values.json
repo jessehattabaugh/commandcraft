@@ -1,0 +1,104 @@
+{ "_id" : { "$oid" : "52b1ff6be4b0878bc8070307" }, "id" : 0, "name" : "air", "kind" : "block", "label" : "Air" }
+{ "_id" : { "$oid" : "52b1ff94e4b0878bc807030e" }, "id" : 1, "name" : "stone", "kind" : "block", "label" : "Stone" }
+{ "_id" : { "$oid" : "52b20087e4b0878bc807031a" }, "id" : 256, "name" : "iron_shovel", "kind" : "item", "label" : "Iron Shovel" }
+{ "_id" : { "$oid" : "52b2027ee4b0878bc8070323" }, "id" : 1, "name" : "Item", "kind" : "entity", "label" : "Dropped Item" }
+{ "_id" : { "$oid" : "52b202bee4b0878bc807032e" }, "id" : 2, "name" : "XPOrb", "kind" : "entity", "label" : "Experience Orb" }
+{ "_id" : { "$oid" : "52b20402e4b0878bc807033a" }, "id" : 0, "label" : "Protection", "kind" : "enchantment" }
+{ "_id" : { "$oid" : "52b20445e4b0878bc807033f" }, "id" : 1, "label" : "Fire Protection", "kind" : "enchantment" }
+{ "_id" : { "$oid" : "52b204b5e4b0878bc8070343" }, "id" : 0, "name" : "moveSpeed", "kind" : "effect", "label" : "Speed" }
+{ "_id" : { "$oid" : "52b204e2e4b0878bc807034d" }, "id" : 1, "name" : "moveSlowdown", "kind" : "effect", "label" : "Slowness" }
+{ "_id" : { "$oid" : "52b20acbe4b02e71787c54a3" }, "id" : 257, "name" : "iron_pickaxe", "kind" : "item", "label" : "Iron Pickaxe" }
+{ "_id" : { "$oid" : "52b23dcbe4b08b097e328f04" }, "id" : 2, "name" : "grass", "kind" : "block", "label" : "Grass Block" }
+{ "_id" : { "$oid" : "52b23dece4b08b097e328f05" }, "id" : 3, "name" : "dirt", "kind" : "block", "label" : "Dirt" }
+{ "_id" : { "$oid" : "52b23e1ee4b08b097e328f06" }, "id" : 4, "name" : "cobblestone", "kind" : "block", "label" : "Cobblestone" }
+{ "_id" : { "$oid" : "52b241f3e4b08b097e328f14" }, "id" : 258, "name" : "iron_axe", "kind" : "item", "label" : "Iron Axe" }
+{ "_id" : { "$oid" : "52b24284e4b08b097e328f16" }, "id" : 259, "name" : "flint_and_steel", "kind" : "item", "label" : "Flint and Steel" }
+{ "_id" : { "$oid" : "52b242cce4b08b097e328f17" }, "id" : 260, "name" : "apple", "kind" : "item", "label" : "Apple" }
+{ "_id" : { "$oid" : "52b242e3e4b08b097e328f18" }, "id" : 261, "name" : "bow", "kind" : "item", "label" : "Bow" }
+{ "_id" : { "$oid" : "52b242fee4b08b097e328f19" }, "id" : 262, "name" : "arrow", "kind" : "item", "label" : "Arrow" }
+{ "_id" : { "$oid" : "52b24315e4b08b097e328f1a" }, "id" : 263, "name" : "coal", "kind" : "item", "label" : "Coal" }
+{ "_id" : { "$oid" : "52b24346e4b08b097e328f1b" }, "id" : 264, "name" : "diamond", "kind" : "item", "label" : "Diamond" }
+{ "_id" : { "$oid" : "52b2436ce4b08b097e328f1e" }, "id" : 265, "name" : "iron_ingot", "kind" : "item", "label" : "Iron Ingot" }
+{ "_id" : { "$oid" : "52b2438be4b08b097e328f1f" }, "id" : 266, "name" : "gold_ingot", "kind" : "item", "label" : "Gold Ingot" }
+{ "_id" : { "$oid" : "52b243a7e4b08b097e328f23" }, "id" : 267, "name" : "iron_sword", "kind" : "item", "label" : "Iron Sword" }
+{ "_id" : { "$oid" : "52b243c6e4b08b097e328f24" }, "id" : 268, "name" : "wooden_sword", "kind" : "item", "label" : "Wooden Sword" }
+{ "_id" : { "$oid" : "52b243ebe4b08b097e328f27" }, "id" : 269, "name" : "wooden_shovel", "kind" : "item", "label" : "Wooden Shovel" }
+{ "_id" : { "$oid" : "52b24411e4b08b097e328f29" }, "id" : 270, "name" : "wooden_pickaxe", "kind" : "item", "label" : "Wooden Pickaxe" }
+{ "_id" : { "$oid" : "52b24441e4b08b097e328f2c" }, "id" : 271, "name" : "wooden_axe", "kind" : "item", "label" : "Wooden Axe" }
+{ "_id" : { "$oid" : "52b2445fe4b08b097e328f2d" }, "id" : 272, "name" : "stone_sword", "kind" : "item", "label" : "Stone Sword" }
+{ "_id" : { "$oid" : "52b24546e4b08b097e328f41" }, "id" : 273, "name" : "stone_shovel", "kind" : "item", "label" : "Stone Shovel" }
+{ "_id" : { "$oid" : "52b2458fe4b08b097e328f54" }, "id" : 274, "name" : "stone_pickaxe", "kind" : "item", "label" : "Stone Pickaxe" }
+{ "_id" : { "$oid" : "52b245a9e4b08b097e328f55" }, "id" : 275, "name" : "stone_axe", "kind" : "item", "label" : "Stone Axe" }
+{ "_id" : { "$oid" : "52b245f7e4b08b097e328f56" }, "id" : 276, "name" : "diamond_sword", "kind" : "item", "label" : "Diamond Sword" }
+{ "_id" : { "$oid" : "52b24608e4b08b097e328f57" }, "id" : 277, "name" : "diamond_shovel", "kind" : "item", "label" : "Diamond Shovel" }
+{ "_id" : { "$oid" : "52b24b48e4b08b097e328f62" }, "id" : 278, "name" : "diamond_pickaxe", "kind" : "item", "label" : "Diamond Pickaxe" }
+{ "_id" : { "$oid" : "52b24ba3e4b08b097e328f63" }, "id" : 278, "name" : "diamond_pickaxe", "kind" : "item", "label" : "Diamond Pickaxe" }
+{ "_id" : { "$oid" : "52b24bbbe4b08b097e328f64" }, "id" : 279, "name" : "diamond_axe", "kind" : "item", "label" : "Diamond Axe" }
+{ "_id" : { "$oid" : "52b24be2e4b08b097e328f65" }, "id" : 280, "name" : "stick", "kind" : "item", "label" : "Stick" }
+{ "_id" : { "$oid" : "52b24c03e4b08b097e328f66" }, "id" : 281, "name" : "bowl", "kind" : "item", "label" : "Bowl" }
+{ "_id" : { "$oid" : "52b24c1ce4b08b097e328f67" }, "id" : 282, "name" : "mushroom_stew", "kind" : "item", "label" : "Mushroom Stew" }
+{ "_id" : { "$oid" : "52b24c39e4b08b097e328f68" }, "id" : 283, "name" : "golden_sword", "kind" : "item", "label" : "Golden Sword" }
+{ "_id" : { "$oid" : "52b24c56e4b08b097e328f69" }, "id" : 284, "name" : "golden_shovel", "kind" : "item", "label" : "Golden Shovel" }
+{ "_id" : { "$oid" : "52b24c81e4b08b097e328f6a" }, "id" : 285, "name" : "golden_pickaxe", "kind" : "item", "label" : "Golden Pickaxe" }
+{ "_id" : { "$oid" : "52b24cb0e4b08b097e328f6b" }, "id" : 286, "name" : "golden_axe", "kind" : "item", "label" : "Golden Axe" }
+{ "_id" : { "$oid" : "52b24cdee4b08b097e328f6c" }, "id" : 287, "name" : "string", "kind" : "item", "label" : "String" }
+{ "_id" : { "$oid" : "52b24cf8e4b08b097e328f6d" }, "id" : 288, "name" : "feather", "kind" : "item", "label" : "Feather" }
+{ "_id" : { "$oid" : "52b24d13e4b08b097e328f6e" }, "id" : 289, "name" : "gunpowder", "kind" : "item", "label" : "Gunpowder" }
+{ "_id" : { "$oid" : "52b24d3ee4b08b097e328f6f" }, "id" : 290, "name" : "wooden_hoe", "kind" : "item", "label" : "Wooden Hoe" }
+{ "_id" : { "$oid" : "52b24d55e4b08b097e328f70" }, "id" : 291, "name" : "stone_hoe", "kind" : "item", "label" : "Stone Hoe" }
+{ "_id" : { "$oid" : "52b24d71e4b08b097e328f72" }, "id" : 292, "name" : "iron_hoe", "kind" : "item", "label" : "Iron Hoe" }
+{ "_id" : { "$oid" : "52b3b0d3e4b0be532bf93a50" }, "id" : 8, "name" : "LeashKnot", "kind" : "entity", "label" : "Lead Knot" }
+{ "_id" : { "$oid" : "52b3b0fbe4b0be532bf93a51" }, "id" : 9, "name" : "Painting", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3b116e4b0be532bf93a52" }, "id" : 18, "name" : "ItemFrame", "kind" : "entity", "label" : "Item Frame" }
+{ "_id" : { "$oid" : "52b3b146e4b0be532bf93a53" }, "id" : 10, "name" : "Arrow", "kind" : "entity", "label" : "Shot Arrow" }
+{ "_id" : { "$oid" : "52b3b172e4b0be532bf93a54" }, "id" : 11, "name" : "Snowball", "kind" : "entity", "label" : "Thrown Snowball" }
+{ "_id" : { "$oid" : "52b3b191e4b0be532bf93a55" }, "id" : 12, "name" : "Fireball", "kind" : "entity", "label" : "Ghast Fireball" }
+{ "_id" : { "$oid" : "52b3b1b9e4b0be532bf93a56" }, "id" : 13, "name" : "SmallFireball", "kind" : "entity", "label" : "Blaze fireball" }
+{ "_id" : { "$oid" : "52b3b1dfe4b0be532bf93a57" }, "id" : 14, "name" : "ThrownEnderpearl", "kind" : "entity", "label" : "Thrown Ender Pearl" }
+{ "_id" : { "$oid" : "52b3b23be4b0be532bf93a5a" }, "id" : 15, "name" : "EyeOfEnderSignal", "kind" : "entity", "label" : "Thrown Eye of Ender" }
+{ "_id" : { "$oid" : "52b3b263e4b0be532bf93a5d" }, "id" : 16, "name" : "ThrownPotion", "kind" : "entity", "label" : "Thrown splash potion" }
+{ "_id" : { "$oid" : "52b3b2a0e4b0be532bf93a5e" }, "id" : 17, "name" : "ThrownExpBottle", "kind" : "entity", "label" : "Thrown Bottle 'o Enchanting" }
+{ "_id" : { "$oid" : "52b3b2bfe4b0be532bf93a5f" }, "id" : 19, "name" : "WitherSkull", "kind" : "entity", "label" : "Wither Skull" }
+{ "_id" : { "$oid" : "52b3b2e7e4b0be532bf93a60" }, "id" : 22, "name" : "FireworkRocketEntity", "kind" : "entity", "label" : "Firework Rocket" }
+{ "_id" : { "$oid" : "52b3b30ee4b0be532bf93a61" }, "id" : 20, "name" : "PrimedTnt", "kind" : "entity", "label" : "Primed TNT" }
+{ "_id" : { "$oid" : "52b3b344e4b0be532bf93a62" }, "id" : 21, "name" : "FallingSand", "kind" : "entity", "label" : "Falling block" }
+{ "_id" : { "$oid" : "52b3b362e4b0be532bf93a63" }, "id" : 41, "name" : "Boat", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3b388e4b0be532bf93a64" }, "id" : 42, "name" : "MinecartRidable", "kind" : "entity", "label" : "Minecart" }
+{ "_id" : { "$oid" : "52b3b3e1e4b0be532bf93a66" }, "id" : 43, "name" : "MinecartChest", "kind" : "entity", "label" : "Minecart with Chest" }
+{ "_id" : { "$oid" : "52b3b407e4b0be532bf93a67" }, "id" : 44, "name" : "MinecartFurnace", "kind" : "entity", "label" : "Minecart with Furnace" }
+{ "_id" : { "$oid" : "52b3b422e4b0be532bf93a68" }, "id" : 45, "name" : "MinecartTNT", "kind" : "entity", "label" : "Minecart with TNT" }
+{ "_id" : { "$oid" : "52b3b448e4b0be532bf93a69" }, "id" : 46, "name" : "MinecartHopper", "kind" : "entity", "label" : "Minecart with Hopper" }
+{ "_id" : { "$oid" : "52b3b46ae4b0be532bf93a6a" }, "id" : 47, "name" : "MinecartSpawner", "kind" : "entity", "label" : "Minecart with Spawner" }
+{ "_id" : { "$oid" : "52b3b481e4b0be532bf93a6b" }, "id" : 48, "name" : "Mob", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3b49de4b0be532bf93a6c" }, "id" : 49, "name" : "Monster", "kind" : "entity", "label" : "Monster" }
+{ "_id" : { "$oid" : "52b3ba12e4b0be532bf93a76" }, "id" : 50, "name" : "Creeper", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3ba48e4b0be532bf93a78" }, "id" : 51, "name" : "Skeleton", "kind" : "entity", "label" : "Skeleton/Wither Skeleton" }
+{ "_id" : { "$oid" : "52b3ba6ae4b0be532bf93a7c" }, "id" : 52, "name" : "Spider", "kind" : "entity", "label" : "Spider" }
+{ "_id" : { "$oid" : "52b3ba7fe4b0be532bf93a7d" }, "id" : 53, "name" : "Giant", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3baa2e4b0be532bf93a7f" }, "id" : 54, "name" : "Zombie", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3babae4b0be532bf93a80" }, "id" : 55, "name" : "Slime", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bad6e4b0be532bf93a81" }, "id" : 56, "name" : "Ghast", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bafde4b0be532bf93a83" }, "id" : 57, "name" : "PigZombie", "kind" : "entity", "label" : "Zombie Pigman" }
+{ "_id" : { "$oid" : "52b3bb87e4b0be532bf93a87" }, "id" : 58, "name" : "Enderman", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bbb4e4b0be532bf93a89" }, "id" : 59, "name" : "CaveSpider", "kind" : "entity", "label" : "Cave Spider" }
+{ "_id" : { "$oid" : "52b3bbf1e4b0be532bf93a8a" }, "id" : 60, "name" : "Silverfish", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bc0ce4b0be532bf93a8b" }, "id" : 61, "name" : "Blaze", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bc8fe4b0be532bf93a8c" }, "id" : 62, "name" : "LavaSlime", "kind" : "entity", "label" : "Magma Cube" }
+{ "_id" : { "$oid" : "52b3bcafe4b0be532bf93a8e" }, "id" : 63, "name" : "EnderDragon", "kind" : "entity", "label" : "Ender Dragon" }
+{ "_id" : { "$oid" : "52b3bccae4b0be532bf93a8f" }, "id" : 64, "name" : "WitherBoss", "kind" : "entity", "label" : "Wither" }
+{ "_id" : { "$oid" : "52b3bce4e4b0be532bf93a91" }, "id" : 66, "name" : "Witch", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bd08e4b0be532bf93a94" }, "id" : 65, "name" : "Bat", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bd6ae4b0be532bf93a95" }, "id" : 90, "name" : "Pig", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bd85e4b0be532bf93a96" }, "id" : 91, "name" : "Sheep", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bd9ae4b0be532bf93a97" }, "id" : 92, "name" : "Cow", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bdb0e4b0be532bf93a98" }, "id" : 93, "name" : "Chicken", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bdc9e4b0be532bf93a99" }, "id" : 94, "name" : "Squid", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bde2e4b0be532bf93a9a" }, "id" : 95, "name" : "Wolf", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3be00e4b0be532bf93a9b" }, "id" : 96, "name" : "MushroomCow", "kind" : "entity", "label" : "Mooshroom" }
+{ "_id" : { "$oid" : "52b3be19e4b0be532bf93a9c" }, "id" : 97, "name" : "SnowMan", "kind" : "entity", "label" : "Snow Golem" }
+{ "_id" : { "$oid" : "52b3be35e4b0be532bf93a9d" }, "id" : 98, "name" : "Ozelot", "kind" : "entity", "label" : "Ocelot" }
+{ "_id" : { "$oid" : "52b3be50e4b0be532bf93a9e" }, "id" : 99, "name" : "VillagerGolem", "kind" : "entity", "label" : "Iron Golem" }
+{ "_id" : { "$oid" : "52b3be69e4b0be532bf93a9f" }, "id" : 100, "name" : "EntityHorse", "kind" : "entity", "label" : "Horse" }
+{ "_id" : { "$oid" : "52b3be85e4b0be532bf93aa2" }, "id" : 120, "name" : "Villager", "kind" : "entity" }
+{ "_id" : { "$oid" : "52b3bea9e4b0be532bf93aa3" }, "id" : 200, "name" : "EnderCrystal", "kind" : "entity", "label" : "Ender Crystal" }
+{ "_id" : { "$oid" : "52c33bcae4b0f0f868676abd" }, "id" : 401, "name" : "fireworks", "kind" : "item", "label" : "Firework Rocket!" }

@@ -4,7 +4,9 @@
   "description": "Web based gui for constructing Minecraft commands",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "kill": "killall -9 node"
+    "kill": "killall -9 node",
+    "exportValues": "mongoexport -h ds039507.mongolab.com:39507 -d commandcraft -c values -u gitHubUser -p f*ckPassw3rds --out data/values.json",
+    "importValues": "mongoimport -h ds039507.mongolab.com:39507 -d commandcraft -c values -u gitHubUser -p f*ckPassw3rds --file data/values.json --upsert"
   },
   "repository": {
     "type": "git",

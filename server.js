@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 app.use(express.query());
 
-mongoose.connect('mongodb://read:password@ds039507.mongolab.com:39507/commandcraft');
+mongoose.connect('mongodb://gitHubUser:f*ckPassw3rds@ds039507.mongolab.com:39507/commandcraft');
 
 app.commands = restful.model('commands', mongoose.Schema({
   id: 'string',

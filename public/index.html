@@ -81,7 +81,7 @@
       
       <!-- Coordinate Picker ------------------------------------------------------>
       <!-- ko if: command().id === 'summon' -->
-        <fieldset class="row">
+        <fieldset>
           <legend>Coordinates</legend>
           
           <div class="col-sm-4">
@@ -122,8 +122,8 @@
       <!-- ko if: command().id === 'give' -->
         <section class="form-group">
           <label for="playerInput">Player</label>
+          
           <div class="input-group">
-            
             <input id="playerInput" class="form-control" data-bind="
               value: player,
               event: {keydown: function () {
@@ -139,18 +139,9 @@
                   click: $parent.selectPlayerVariable
                 "></a></li>
               </ul>
-            </div><!-- /btn-group -->
+            </div>
           </div>
-            
-            <!--<select class="form-control" data-bind="
-              options: variables,
-              optionsText: 'name',
-              value: playerVar,
-              optionsCaption: '-',
-              event: {change: function () {
-                player('');
-              }}
-              "></select>-->
+          <p class="help-block">The player you want to target with this command</p>
         </section>
       <!-- /ko -->
       
@@ -163,6 +154,7 @@
             optionsText: 'name',
             value: item
           "></select>
+          <p class="help-block">The item you want to give</p>
         </section>
       <!-- /ko -->
       
@@ -171,6 +163,7 @@
         <section class="form-group">
           <label for="">Amount</label>
           <input id="amountInput" class="form-control" type="number" min="1" max="64" data-bind="value: amount">
+          <p class="help-block">The number of items to give</p>
         </section>
       <!-- /ko -->
       
@@ -179,6 +172,7 @@
         <section class="form-group">
           <label for="metadataInput" class="control-label">Metadata</label>
           <input id="metadataInput" class="form-control" type="number" min="0" max="256" data-bind="value: metadata">
+          <p class="help-block">Some items have sub-types, like he various colors of wood</p>
         </section>
       <!-- /ko -->
       
@@ -187,12 +181,13 @@
       <fieldset>
         <legend>Tag</legend>
         <ul class="list-group" data-bind="template: {name: 'tagTemplate', data: tag}"></ul>
+        <p class="help-block">Tags let you specify complex options for the items and entities of the command</p>
       </fieldset>
       <!-- /ko -->
       
       <!-- Tag Template ----------------------------------------------------------->
       <script type="text/html" id="tagTemplate">
-        <li class="list-group-item" data-bind="attr: {title: data.description}">
+        <li class="list-group-item" data-bind="">
         
           <!-- ko if: parent !== null -->
             <button type="button" class="btn btn-danger btn-xs" data-bind="click: removeSelf">
@@ -203,7 +198,10 @@
           <div>
           
             <!-- ko if: parent !== null && data.id -->
-              <label data-bind="text: data.id"></label>
+              <label data-bind="
+                text: data.id,
+                attr: { title: data.description }
+              "></label>
             <!-- /ko -->
             
             <!-- ko if: data.type === 'string' -->
@@ -235,14 +233,17 @@
                 foreach: children
               }"></ul>
               
-              
-              <button type="button" class="btn btn-success btn-xs" data-bind="visible: canAdd">
+              <a href="#" class="btn btn-success btn-xs" data-bind="
+                visible: canAdd,
+                css: { disabled: !selected() }
+              ">
                 <span class="glyphicon glyphicon-plus" data-bind="click: addChild"></span>
-              </button>
+              </a>
               
               <select class="form-control" data-bind="
                 options: options,
                 optionsText: 'id',
+                optionsCaption: 'Select a tag...',
                 value: selected,
                 visible: canAdd
               "></select>
@@ -253,10 +254,10 @@
       </script>
       
       <!-- Output ----------------------------------------------------------------->
-      <div class="form-group">
+      <section class="form-group well">
         <label for="outputTextarea">Output</label>
         <textarea id="outputTextarea" class="form-control" data-bind="text: output"></textarea>
-      </div>
+      </section>
     
     </form>
     
